@@ -1,0 +1,196 @@
+# PCA SCREENS - JOSH
+question: Question
+subquestion: |
+  Do you have a full license, provisional license, or learner's permit?
+fields:
+  - no label: LSC_licence_class
+    datatype: radio
+    choices:
+      - Learners or Provisional licence: LSC_learners_provisional
+      - Full licence: LSC_full_license 
+---
+question: Notice
+subquestion: |
+  Since you are also in breach of license conditions some special considerations will apply. You can read about these at: https://lsc.sa.gov.au/cb_pages/drinkdrivingfactsheet.php#:~:text=The%20law%20is%20strict%20as,a%20breach%20of%20licence%20conditions.
+field: LSC_provisional_PCA
+buttons: 
+  - Proceed: proceed
+  - Exit: exit
+---
+question: Question
+subquestion: |
+  Is this your first, second, third, or subsequent offence?
+fields:
+  - no label: LSC_PCA_number_of_offences_question
+    datatype: radio
+    choices: 
+      - First Offence: first_offence
+      - Second Offence: second_offence
+      - Third Offence: third_offence 
+      - Subsequent Offence: subsequent_offence
+
+  # I'm not sure how to implement this but I think it would be easiest to have whatever option they select link up with a BAC question connected to it. E.g. they select 'third_offence' and it takes them to the 'LSC_BAC_range_question_third offence' question. From there they select, for instance, <0.08 BAC. That would trigger the 'cat1_thirdoffence' notice screen. From there we can ask if a child was present (it doesn't affect the fine, only the way they go about getting their license back).
+  
+  #Chat to me about it if this makes no sense. 
+---      
+question: Question
+subquestion: |
+  Was a child under the age of 16 present?
+fields:
+  - no label: child_present_question
+    datatype: radio
+    choices: 
+      - Yes: child_under_16_present_yes
+      - No: child_under_16_present_no
+      
+  # This question should come after the (number of prior offences) and (PCA level) questions since it's always the same but I'm not sure how to implement this? I've left it seperate because it's probably something we can do fairly easily. If not, we can fix it before S2.
+---
+question: Question
+subquestion: |
+  What blood alcohol concentration range did you fall within at the time of the offence?
+fields: 
+  - no label: first_offence
+    datatype: radio
+    choices: 
+      - Below 0.08: cat1_firstoffence
+      - Between 0.08 - 0.15: cat2_firstoffence
+      - Greater than 0.15: cat3_firstoffence
+---
+question: Question
+subquestion: |
+  What blood alcohol concentration range did you fall within at the time of the offence?
+fields: 
+  - no label: second_offence
+    datatype: radio
+    choices: 
+      - Below 0.08: cat1_secondoffence
+      - Between 0.08 - 0.15: cat2_secondoffence
+      - Greater than 0.15: cat3_secondoffence
+---
+question: Question
+subquestion: |
+  What blood alcohol concentration range did you fall within at the time of the offence?
+fields: 
+  - no label: third_offence
+    datatype: radio
+    choices: 
+      - Below 0.08: cat1_thirdoffence
+      - Between 0.08 - 0.15: cat2_thirdoffence
+      - Greater than 0.15: cat3_thirdoffence
+---
+question: Question
+subquestion: |
+  What blood alcohol concentration range did you fall within at the time of the offence?
+fields: 
+  - no label: subsequent_offence
+    datatype: radio
+    choices: 
+      - Below 0.08: cat1_subsequentoffence
+      - Between 0.08 - 0.15: cat2_subsequentoffence
+      - Greater than 0.15: cat3_subsequentoffence
+---
+  # ONLY NOTICE SCREENS FROM THIS POINT ONWARDS #
+question: Notice
+subquestion: |
+  If this is your first time blowing over the limit you will be fined $1100 and receive 4 demerit points. If convicted you will be disqualified from driving for at least 3 months.
+field: cat1_firstoffence 
+buttons: 
+  - Proceed: proceed
+  - Exit: exit
+---
+question: Notice
+subquestion: |
+  If this is your first time blowing over the limit you will be fined between $900 - $1300 and receive 5 demerit points. If convicted you will be disqualified from driving for at least 6 months.
+field: cat2_firstoffence
+buttons: 
+  - Proceed: proceed
+  - Exit: exit
+---
+question: Notice
+subquestion: |
+  If this is your first time blowing over the limit you will be fined between $1100 - $1600 and receive 6 demerit points. If convicted you will be disqualified from driving for at least 12 months.
+field: cat3_firstoffence
+buttons: 
+  - Proceed: proceed
+  - Exit: exit
+---
+question: Notice
+subquestion: |
+  If this is your second time blowing over the limit you will be fined $1100 and receive 4 demerit points. If convicted you will be disqualified from driving for at least 6 months.
+field: cat1_secondoffence
+buttons: 
+  - Proceed: proceed
+  - Exit: exit
+---
+question: Notice
+subquestion: |
+  If this is your second time blowing over the limit you will be fined $1100 and receive 4 demerit points. If convicted you will be disqualified from driving for at least 6 months.
+field: cat1_secondoffence
+buttons: 
+  - Proceed: proceed
+  - Exit: exit
+---
+question: Notice
+subquestion: |
+  If this is your second time blowing over the limit you will be fined between $1100 - $1600 and receive 5 demerit points. If convicted you will be disqualified from driving for at least 12 months.
+field: cat2_secondoffence
+buttons: 
+  - Proceed: proceed
+  - Exit: exit
+---
+question: Notice
+subquestion: |
+  If this is your second time blowing over the limit you will be fined between $1600 - $2400 and receive 6 demerit points. If convicted you will be disqualified from driving for at least 36 months.
+field: cat3_secondoffence
+buttons: 
+  - Proceed: proceed
+  - Exit: exit
+---
+question: Notice
+subquestion: |
+  If this is your third time blowing over the limit you will be fined $1100 and receive 4 demerit points. If convicted you will be disqualified from driving for at least 9 months.
+field: cat1_thirdoffence
+buttons: 
+  - Proceed: proceed
+  - Exit: exit
+---
+question: Notice
+subquestion: |
+  If this is your third time blowing over the limit you will be fined between $1500 - $2200 and receive 5 demerit points. If convicted you will be disqualified from driving for at least 24 months.
+field: cat2_thirdoffence
+buttons: 
+  - Proceed: proceed
+  - Exit: exit
+---
+question: Notice
+subquestion: |
+  If this is your second time blowing over the limit you will be fined between $1900 - $2900 and receive 6 demerit points. If convicted you will be disqualified from driving for at least 36 months.
+field: cat3_thirdoffence
+buttons: 
+  - Proceed: proceed
+  - Exit: exit
+---
+question: Notice
+subquestion: |
+  If you have blown over the limit more than three times previously, you will be fined $1100 and receive 4 demerit points. If convicted you will be disqualified from driving for at least 12 months.
+field: cat1_subsequentoffence
+buttons: 
+  - Proceed: proceed
+  - Exit: exit
+---
+question: Notice
+subquestion: |
+  If you have blown over the limit more than three times previously, you will be fined between $1500 - $2200 and receive 5 demerit points. If convicted you will be disqualified from driving for at least 24 months.
+field: cat2_subsequentoffence
+buttons: 
+  - Proceed: proceed
+  - Exit: exit
+---
+question: Notice
+subquestion: |
+  If you have blown over the limit more than three times previously, you will be fined between $1900 - $2900 and receive 6 demerit points. If convicted you will be disqualified from driving for at least 36 months.
+field: cat3_subsequentoffence
+buttons: 
+  - Proceed: proceed
+  - Exit: exit
+---
